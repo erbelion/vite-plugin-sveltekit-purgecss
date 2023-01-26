@@ -32,9 +32,9 @@ const config: UserConfig = {
 
 PurgeCSS will work in `.svelte` files if css assets are imported using  `@import` inside style tag or `import` inside script tag.
 
-Default path that always will be processed: `src/**/*.{svelte,html}`.
+Default path that will always be processed: `src/**/*.{svelte,html}`.
 
-Default safelist item that always will be processed: `/(svelte-)[a-zA-Z0-9]{6}/`.
+Default safelist item that will always be processed: `/(svelte-)[a-zA-Z0-9]{6}/`.
 
 ## Additional Options
 
