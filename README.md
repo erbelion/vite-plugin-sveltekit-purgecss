@@ -42,3 +42,6 @@ Default safelist item that always will be processed: `/(svelte-)[a-zA-Z0-9]{6}/`
 | ----------- | -----------  | ---------- |
 | paths? | `string[]` | List of paths to be processed by PurgeCSS. |
 | safelist? | `UserDefinedSafelist` | Check available safelist options in [PurgeCSS docs](https://purgecss.com/configuration.html#options).
+
+## See also
+[vite-plugin-laravel-purgecss](https://github.com/erbelion/vite-plugin-laravel-purgecss)
