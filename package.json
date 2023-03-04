@@ -1,6 +1,6 @@
 {
   "name": "@erbelion/vite-plugin-sveltekit-purgecss",
-  "version": "0.0.2",
+  "version": "0.0.7",
   "description": "A Vite plugin that integrates PurgeCSS with SvelteKit css assets.",
   "author": "erbelion",
   "keywords": [
