@@ -1,42 +1,53 @@
-import { PurgeCSS, UserDefinedSafelist, StringRegExpArray, ComplexSafelist } from 'purgecss'
+import {
+    PurgeCSS,
+    UserDefinedSafelist,
+    StringRegExpArray,
+    ComplexSafelist,
+} from "purgecss"
+import { Plugin } from "vite"
 
 type Options = {
-    paths?: string[],
+    paths?: string[]
     safelist?: UserDefinedSafelist
 }
 
 const svelteRegex = /(svelte-)[a-zA-Z0-9]{6}/
 
-export function purge (options?: Options) {
+const purge = (options?: Options): Plugin => {
     return {
-        name: 'vite-plugin-sveltekit-purgecss',
-        enforce: 'post',
+        name: "vite-plugin-sveltekit-purgecss",
+        enforce: "post",
         async generateBundle(_options, bundle) {
-            const cssFiles = Object.keys(bundle).filter(key => key.endsWith('.css'))
+            const cssFiles = Object.keys(bundle).filter((key) =>
+                key.endsWith(".css")
+            )
             if (!cssFiles) return
 
             options ??= {} as Options
             options.safelist ??= {} as UserDefinedSafelist
-            if(options.safelist.constructor.name === 'Array')
+            if (options.safelist.constructor.name === "Array")
                 (options.safelist as StringRegExpArray).push(svelteRegex)
-            else if(options.safelist.constructor.name === 'Object'){
-                (options.safelist as ComplexSafelist).greedy ??= [] as RegExp[]
-                (options.safelist as ComplexSafelist).greedy.push(svelteRegex)
+            else if (options.safelist.constructor.name === "Object") {
+                ;(options.safelist as ComplexSafelist).greedy ??= [] as RegExp[]
+                ;(options.safelist as ComplexSafelist).greedy.push(svelteRegex)
             }
-            
-            let paths = ['src/**/*.{svelte,html}']
-            options?.paths?.forEach(path => paths.push(path))
+
+            let paths = ["src/**/*.{svelte,html}"]
+            options?.paths?.forEach((path) => paths.push(path))
             for (const file of cssFiles) {
                 //TODO
-                if(!Object.hasOwn(bundle[file], 'source')) continue
+                if (!Object.hasOwn(bundle[file], "source")) continue
 
                 const purged = await new PurgeCSS().purge({
                     content: paths,
-                    css: [{raw: bundle[file]['source']}],
-                    safelist: options?.safelist
+                    css: [{ raw: bundle[file]["source"] }],
+                    safelist: options?.safelist,
                 })
-                bundle[file]['source'] = purged[0].css
+                bundle[file]["source"] = purged[0].css
             }
-        }
+        },
     }
 }
+
+export { purge }
+export default purge
