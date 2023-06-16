@@ -1,6 +1,6 @@
 {
   "name": "@erbelion/vite-plugin-sveltekit-purgecss",
-  "version": "0.0.7",
+  "version": "0.1.0",
   "description": "A Vite plugin that integrates PurgeCSS with SvelteKit css assets.",
   "author": "erbelion",
   "keywords": [
@@ -18,14 +18,14 @@
     "url": "https://github.com/erbelion/vite-plugin-sveltekit-purgecss/issues"
   },
   "homepage": "https://github.com/erbelion/vite-plugin-sveltekit-purgecss#readme",
-	"type": "module",
-	"main": "dist/index.cjs",
-	"module": "dist/index.js",
-	"exports": {
-		"import": "./dist/index.js",
-		"require": "./dist/index.cjs"
-	},
-	"types": "dist/index",
+  "type": "module",
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "exports": {
+    "import": "./dist/index.js",
+    "require": "./dist/index.cjs"
+  },
+  "types": "dist/index",
   "license": "MIT",
   "private": false,
   "scripts": {
